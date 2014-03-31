@@ -185,3 +185,7 @@ All fields are public, and you cannot filter what you give to whom. As is, this 
 The user experience of having the necessity to register a Namecoin address, buy some NMC and do all the publication of the data is quite cumbersome. A third party service adding a layer of abstraction would greatly simplify usage without compromising security.
 
 It could also add some nice privacy features such as encrypting the identity data and reveal only extracts per the user's will.
+
+# Author
+
+Eric Larchevêque (elarch@gmail.com)

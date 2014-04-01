@@ -3,29 +3,19 @@ BitID
 
 *Bitcoin Authentication Open Protocol*
 
-Pure Bitcoin sites and applications shouldn’t have to always rely on artificial identification such as username and password. BitID is an open protocol allowing simple and secure authentication by a Bitcoin address, using a private key challenge.
+Pure Bitcoin sites and applications shouldn’t have to rely on artificial identification such as usernames and passwords. BitID is an open protocol allowing simple and secure identification by a Bitcoin address, using a cryptographic signature challenge.
 
 # Acknowledgment
 
-The idea to authenticate using a cryptographic challenge is nothing new and BitID doesn't claim to be an original approach. The goal is to propose common specifications and best practices as well as provide a seamless user experience.
+Authenticating using a cryptographic challenge isn't a new idea and BitID doesn't claim to be an original approach.
 
-Discussion on [Reddit](http://www.reddit.com/r/Bitcoin/comments/1nkoju/bitcoin_core_dev_websites_do_not_need_passwords/) about a need to replace user/pwd with a key based auth. 
+Discussion on [Reddit](http://www.reddit.com/r/Bitcoin/comments/1nkoju/bitcoin_core_dev_websites_do_not_need_passwords/) about a need to replace user/pwd authentication with a key-based signature. 
 
-[SQRL](https://www.grc.com/sqrl/sqrl.htm) (Secure Quick Reliable Login) is a similar project allowing authentication using public and private keys. It is however much broad in its approach and relies on additional software / app, as BitID relies on wallets which the user must already have.
-
-# Why ?
-
-When dealing with Bitcoin services, user has most of the time a wallet with at least one address. Using this wallet for authentication purpose has many benefits :
-- seamless registration / login experience
-- no need to remember password, added security
-- authentication by Bitcoin address, allowing service to know return address if needed
-- possibility of connecting with a decentralized identification system to populate registration fields (name, email ...)
-
-Of course, these benefits apply only for Bitcoin related services. It leverages the fact that users already have a wallet and already took all steps to protect/backup it. For mainstream services, other auth services such as OpenID, Facebook connect, etc are much more suited.
+[SQRL](https://www.grc.com/sqrl/sqrl.htm) (Secure Quick Reliable Login) is a similar project allowing authentication using public-key cryptography. It has however a much broader scope and relies on additional software for storing the key pairs, while BitID relies on crypto-wallets that users already have access to.
 
 # How does it work ?
 
-To access a restricted area or just to identify himself, the user is presented with the following UX :
+In order to access a restricted area or just to identify herself, the user is shown the following UX :
 
 ![](http://i.imgur.com/CvuXijh.png)
 
@@ -35,17 +25,20 @@ The QRcode contains the following data :
 bitid://?s=NONCE&c=https://www.site.com/callback
 ```
 
-NONCE must always be unique, could be the session ID.
+The NONCE must always be unique, and will be the user's session ID on the site the callback is redirected to.
 
-User scans the code with a compatible wallet :
+The user has to confirm that she wants to authenticate herself on the target website, and has to choose which Bitcoin private key will sign the QR code contents.
+
+If the user’s Bitcoin wallet is located on the same computer, a click on the QR code should launch the wallet application and supply it with the signature request. If the wallet is located on a mobile phone, the user should scan the QR code using the application. In both cases, the following dialog options should be shown :
+
 
 | Step 1 | Step 2 | Step 3 |
 |--------|--------|--------|
 |![](http://i.imgur.com/6KlZFGe.png)|![](http://i.imgur.com/8ZNMmdp.png)|![](http://i.imgur.com/630hUsu.png)|
 
-The wallet lets the user pick or create a Bitcoin address, then signs the **full bitid URI** with the address’ private key and POST the result including the public key to the callback url.
+After a Bitcoin address is chosen, or created on the fly, the **full bitid URI** is signed with the address’ private key. The signature and public key are then POSTed to the callback url.
 
-Server side, the application verifies the validity of the signature and proceeds to authenticate the user with the Bitcoin address received. For added security, server should check callback is coming less than 5 min after the challenge and should invalidate the nonce immediately to avoid any possibility of replay.
+The receiving server verifies the validity of the signature and proceeds to authenticate the user. Server-side, only the user's public key is stored. A timeout for the validity of the nonce should be implemented by the server in order to prevent replay attacks.
 
 After authentication, if this is her first visit (sign up), the website can for instance ask the user to choose a human readable nickname :
 
@@ -56,6 +49,18 @@ For compatibility reasons, as not all wallets will provide support for `bitid://
 ![](http://i.imgur.com/Giz0fGQ.png)
 
 With this option, all wallets (including Bitcoin Core) can use the BitID protocol, at the expense of the UX.
+
+# Leveraging the blockchain
+
+By monitoring transactions originating from the identified address, it is possible to add an application layer.
+
+## Spam prevention
+
+When registering with BitID, to validate the account and get full access, X satoshis must be sent to a validation address.
+
+## Access control
+
+Depending of how much or which addresses has been paid by the identified Bitcoin address, access to resources can be easily implemented.
 
 # Application examples
 

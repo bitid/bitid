@@ -3,11 +3,21 @@ BitID
 
 *Bitcoin Authentication Open Protocol*
 
-Pure Bitcoin sites and applications shouldn’t have to rely on artificial identification such as usernames and passwords. BitID is an open protocol allowing simple and secure identification by a Bitcoin address, using a cryptographic signature challenge.
+Pure Bitcoin sites and applications shouldn’t have to rely on artificial identification such as usernames and passwords. BitID is an open protocol allowing simple and secure authentication by a Bitcoin address, using a cryptographic signature challenge.
+
+# Why ?
+
+When dealing with Bitcoin services, user has most of the time a wallet with at least one address. Using this wallet for authentication purpose has many benefits :
+- seamless registration / login experience
+- no need to remember password, added security
+- authentication by Bitcoin address, allowing service to know return address if needed
+- possibility of connecting with a decentralized identification system to populate registration fields (name, email ...)
+
+Of course, these benefits apply only for Bitcoin related services. It leverages the fact that users already have a wallet and already took all steps to protect/backup it. For mainstream services, other auth services such as OpenID, Facebook connect, etc are much more suited.
 
 # Acknowledgment
 
-Authenticating using a cryptographic challenge isn't a new idea and BitID doesn't claim to be an original approach.
+Authenticating using a cryptographic challenge isn't a new idea and BitID doesn't claim to be an original approach. The goal is to propose common specifications and best practices as well as provide a seamless user experience.
 
 Discussion on [Reddit](http://www.reddit.com/r/Bitcoin/comments/1nkoju/bitcoin_core_dev_websites_do_not_need_passwords/) about a need to replace user/pwd authentication with a key-based signature. 
 
@@ -49,18 +59,6 @@ For compatibility reasons, as not all wallets will provide support for `bitid://
 ![](http://i.imgur.com/Giz0fGQ.png)
 
 With this option, all wallets (including Bitcoin Core) can use the BitID protocol, at the expense of the UX.
-
-# Leveraging the blockchain
-
-By monitoring transactions originating from the identified address, it is possible to add an application layer.
-
-## Spam prevention
-
-When registering with BitID, to validate the account and get full access, X satoshis must be sent to a validation address.
-
-## Access control
-
-Depending of how much or which addresses has been paid by the identified Bitcoin address, access to resources can be easily implemented.
 
 # Application examples
 

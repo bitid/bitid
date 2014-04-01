@@ -136,30 +136,31 @@ One of the weaknessess of BitId is the impossibility of access revocation when l
 
 Storage of the CA is done using the Namecoin blockchain under the `bitid/` namespace. In a raw implementation, user must therefore have a Namecoin wallet and some NMC to pay the registration of the datas. 
 
-Implementation of authority and identity storage is done using Namecoin.
-
 ### Principle
 
-First, user needs to register proof of Bitcoin address ownership in the Namecoin blockchain.
+First, user needs to associate his Namecoin address with his Bitcoin address. He publishes a proof of ownership on Namecoin blockchain :
 
 **key** `bitid/[bitcoin_address]/proof`
 ```
-{ "nonce" : nonce, 
-  "signature": [nonce signed with address' private key] }
+{ "nmc" : [namecoin_address], 
+  "signature": [namecoin_address signed with bitcoin_address' private key] }
 ```
 
-At challenge signature verification time on the website back end, BitID service checks for the proof of trust and its validity. If the proof is legal (signature matches), then it is checked for existence of a revocation at `bitid/[bitcoin_address]`
+Now, in order to revoke access for his bitcoin address, user must publish the following on Namecoin blockchain :
 
-If the value is
-
+**key** `bitid/[bitcoin_address]`
 ```
-{ "revoke" : true }
+{ "revoke" : true,
+  "signature" : [json signed with namecoin_address' private key] }
 ```
 
-and if the transaction comes from the same Namecoin address than the proof of trust, then authentication must fail and access cannot be granted.
+This publication is possible even it user lost his Bitcoin address private key, because proof of ownership has been delegated to his Namecoin address.
 
-#### Why using two key/value ?
-Proof of trust must be shown, so if we had only one key we would need to add a signature of the data. However, if you just lost your private key you cannot do that. Proof that the Namecoin address publishing the revocation order is trusted has been previously stored in the blockchain. Establishment of trust must of course be done in advance.
+After BitID authentication process, the back end checks for a proof of trust. If the proof is legal (signature matches), then it is checked for existence of a revocation at `bitid/[bitcoin_address]`
+
+#### Why using two entries in the Namecoin blockchain ?
+As anyone can publish on the Namecoin blockchain, you must prove that you control the Bitcoin address in question. One solution could be to sign the content with the Bitcoin address' private key, but if you just lost your wallet without backup you cannot do that.
+The solution is then to delegate control to a Namecoin address (which you need anyway to publish on the blockchain), and leverage this trust by signing the json with the Namecoin private address key.
 
 #### What happens if you lose access to your Namecoin wallet ?
 If you lose access when you still have your Bitcoin private key, then you can add a new proof (`/proof-1`). If you lose it in the same time than your Bitcoin private key, then you are doomed.
@@ -174,7 +175,8 @@ First, you need to establish trust (see previous section), and publish the data 
 ```
 { "username" : "EricLarch", 
   "avatar" : "http://img.com/bla",
-  "twitter" : "EricLarch" }
+  "twitter" : "EricLarch",
+  "signature" : [json signed with namecoin_address' private key] }
 ```
 
 When the server checks for revocation, it can fetch in the same time your data and use it to populate some registration fields.

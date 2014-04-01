@@ -3,33 +3,34 @@ BitID
 
 *Bitcoin Authentication Open Protocol*
 
-Pure Bitcoin sites and applications shouldn’t have to rely on artificial identification such as usernames and passwords. BitID is an open protocol allowing simple and secure authentication by a Bitcoin address, using a cryptographic signature challenge.
+Pure Bitcoin sites and applications shouldn’t have to rely on artificial identification methods such as usernames and passwords. BitID is an open protocol allowing simple and secure authentication using public-key cryptography.
 
 # Why ?
 
-When dealing with Bitcoin services, user has most of the time a wallet with at least one address. Using this wallet for authentication purpose has many benefits :
-- seamless registration / login experience
-- no need to remember password, added security
-- authentication by Bitcoin address, allowing service to know return address if needed
-- possibility of connecting with a decentralized identification system to populate registration fields (name, email ...)
+When they need to deal with Bitcoin services, users already own at least one public and private key-pair: their Bitcoin addresses. Using their wallet for authentication purposes has many benefits :
+- "one-click" registration and login procedures
+- no need to remember or duplicate passwords
+- the server only knows and stores the users's public key
+- authentication by a Bitcoin address allows the service to use it (ie: Mining pool payment address)
+- optionally, connect to a decentralized identification system in order to populate registration fields (nickname, email ...)
 
-Of course, these benefits apply only for Bitcoin related services. It leverages the fact that users already have a wallet and already took all steps to protect/backup it. For mainstream services, other auth services such as OpenID, Facebook connect, etc are much more suited.
+Of course, these benefits mostly apply for Bitcoin related services, leveraging the fact that users already have a wallet and presumably took all the necessary steps to protect and back it up. For non-cryptocurrency-related services, other authentication services such as OpenID or Facebook connect may be better suited.
 
 # Acknowledgment
 
-Authenticating using a cryptographic challenge isn't a new idea and BitID doesn't claim to be an original approach. The goal is to propose common specifications and best practices as well as provide a seamless user experience.
+Authenticating using a cryptographic challenge isn't a new idea and BitID doesn't claim to be an original approach. The goal is to propose common specifications and best practices as well as offer a seamless user experience.
 
-Discussion on [Reddit](http://www.reddit.com/r/Bitcoin/comments/1nkoju/bitcoin_core_dev_websites_do_not_need_passwords/) about a need to replace user/pwd authentication with a key-based signature. 
+Discussion on [Reddit](http://www.reddit.com/r/Bitcoin/comments/1nkoju/bitcoin_core_dev_websites_do_not_need_passwords/) about a need to replace user/pwd authentication with a public-key cryptographic signature. 
 
-[SQRL](https://www.grc.com/sqrl/sqrl.htm) (Secure Quick Reliable Login) is a similar project allowing authentication using public-key cryptography. It has however a much broader scope and relies on additional software for storing the key pairs, while BitID relies on crypto-wallets that users already have access to.
+[SQRL](https://www.grc.com/sqrl/sqrl.htm) (Secure Quick Reliable Login) is a similar project allowing authentication using public-key cryptography. It has however a much broader scope and relies on additional software for storing the key pairs, while BitID relies on crypto-wallets that users already own.
 
 # How does it work ?
 
-In order to access a restricted area or just to identify herself, the user is shown the following UX :
+In order to access a restricted area or authenticate oneself against a given service, the user is shown the following UX :
 
 ![](http://i.imgur.com/CvuXijh.png)
 
-The QRcode contains the following data :
+The QR code contains the following data :
 
 ```
 bitid://?s=NONCE&c=https://www.site.com/callback
@@ -50,48 +51,52 @@ After a Bitcoin address is chosen, or created on the fly, the **full bitid URI**
 
 The receiving server verifies the validity of the signature and proceeds to authenticate the user. Server-side, only the user's public key is stored. A timeout for the validity of the nonce should be implemented by the server in order to prevent replay attacks.
 
-After authentication, if this is her first visit (sign up), the website can for instance ask the user to choose a human readable nickname :
+After authentication, if this is the user's first visit (sign up), the website may for instance ask her to choose a human readable nickname : 
 
 ![](http://i.imgur.com/XzcwfTC.png)
 
-For compatibility reasons, as not all wallets will provide support for `bitid://` scheme, a manual challenge is also possible :
+This step is optional. If not needed by the server, the user experience will be identical for registration and login purposes.
+
+For compatibility reasons, since not all wallets will provide support for the proposed `bitid://` scheme, a manual challenge is also possible :
 
 ![](http://i.imgur.com/Giz0fGQ.png)
 
-With this option, all wallets (including Bitcoin Core) can use the BitID protocol, at the expense of the UX.
+All wallets (including Bitcoin Core) provide manual signing capabilities, therefore any user may use the BitID protocol at the expense of the UX.
 
 # Application examples
 
 ## Website authentication
-* any bitcoin core website (mining pools, services, otc exchanges…)
-* content website such as wikis, including access control
+* any bitcoin core website (mining pools, related services, otc exchanges…)
+* content websites such as forums and wikis, including access control
 
 ## Real world applications
-* door access control
-* locker rental
+* door access controls
+* lockers rental
 
 ## E-commerce
-* dead simple digital content commerce service
+* dead simple e-commerce services: one QR code scan for authentication/cart creation, one QR code scan for payment
 
 # Security concerns
 
-BitID claims to have a secure authentication method :
-* out of band authentication when using a smartphone wallet
-* anti phishing protection when desktop wallet (IP verification)
-* no third party, no external compromission possible
-* resistant to arbitrary signature, as challenges are syntaxically verifiable by the wallet
+BitID offers a secure authentication method :
+* As secure as sending funds through Bitcoin
+* out-of-band, keyless authentication using a smartphone wallet, allowing login through an untrusted computer
+* anti-phishing protection when using a desktop wallet (IP address matching verification)
+* no third party, no external compromission possible, no storage of user sensitive data on the server
+* resistant to arbitrary signature requests: challenges are syntaxically verified by the wallet as valid bitid URIs
+* resistant to brute force or dictionary attacks
 
-However many responsibilities are in the hand of the user :
-* user must protect his private key and make backups (this should already be the case anyway)
-* user must pay attention to the URL in authentication requests (man in the middle attack) ; it is not possible to auto-detect phishing attempts.
+However many responsibilities are in the hands of the user :
+* the user must protect his private keys and make backups (this should already be the case)
+* the user must pay attention to the URL shown in authentication requests in order to avoid man-in-the-middle attacks; the out-of-band authentication process does not allow any protection against these attacks.
 
-Also, a major flaw of this protocol is the absence of revocation. If you lose your private address or if it becomes compromised, you have no native possibility of revoking the access. The only way is to establish a back channel communication with the website (email, secondary address…)
+* Finally, a major drawback of this protocol is the absence of revocation procedures. If the user loses her private key or if it is compromised, there is no native possibility of revoking the authentication access. The only way to revoke the user's identity is then to to establish a back-channel communication with the website using email, security questions, or a password.
 
 # General remarks
 
-BitID is not a general purpose identification system. It should only be used when a Bitcoin address is paramount to the usage of the site or application, and when this usage is long term (wouldn’t make sense for a tipping service).
+BitID is not a general-purpose identification system. It should mainly be used when a Bitcoin address is paramount to the usage of the site or application, and when this usage is a long-term one - it wouldn’t make sense for a tipping service.
 
-Therefore, BitID doesn’t claim to be a superior authentication system, just one better fitted to specific Bitcoin applications.
+Therefore, BitID doesn’t claim to be a superior authentication system, just one well-fitted to Bitcoin and altcoins-related applications.
 
 # Diagrams
 
@@ -101,93 +106,94 @@ Therefore, BitID doesn’t claim to be a superior authentication system, just on
 
 ## Wallet implementation requirements
 
-To be compatible with the BitID protocol, a wallet must implement the following :
+To be compatible with the BitID protocol, a wallet must implement the following:
 * register the bitid:// scheme
-* throw a bitid:// intent when scanning a BitID QRcode (if applicable)
-* decode the URI and verify its legality
-* show a request for authentication showing the domain name callback, ask for validation
+* throw a bitid:// intent when scanning a BitID QR code (if applicable)
+* decode the URI and verify its format
+* display a request for authentication showing the domain name callback and ask for validation
 * ask the user to pick up or create a Bitcoin address for the authentication (show the last Bitcoin address used if this is a known callback address)
-* sign the URI with the private key
-* POST to the callback URL
-* completion dialog : success / retry
+* sign the BitID URI with the private key
+* POST the signature and the public key to the callback URL
+* completion dialog : success/retry/cancel
 
-To successfully get the maximum number of wallet to implement BitID, specs and UX must be the most simple possible.
+Specs and UX should be the most simple possible in order to bring on board the developers of the most used wallets.
 
 ## Backend implementation requirements
 
 To be compatible with the BitID protocol, a server application must implement the following :
 * Create a callback route
-* Create a nonce (match it to the session and timestamp it)
-* Build URI with a nonce and the callback
-* Build and show QRcode
-* On callback, verify the signature
-* If correct, login the session with the Bitcoin address and notify the front end using sockets
-* Alternate version for zero day compatibility :
-    * show a form with the nonce to sign
-    * two required fields : Bitcoin address and signature
+* Generate a complex enough nonce (match it to the session and timestamp it)
+* Generate an URI with the nonce and the callback URL
+* Display the corresponding QR code
+* On receiving the POST, verify the signature with the user's public key
+* If correct, login the session with the Bitcoin address and notify the front-end using sockets
+* Store the public key as the user identity, allowing for storing user preferences and additional data
+* Alternate version for zero-day compatibility :
+    * display a form with the following fields: generated nonce, Bitcoin public address and signature
     * when submitting, verify and return to login or error
 
-Protocol extension
+Protocol extensions
 =====
 
-## Decentralized certificate authority
+## Decentralized certification authority
 
-One of the weaknessess of BitId is the impossibility of access revocation when losing its private key. By adding a decentralized CA to the protocol, this security feature becomes possible.
+One of the weaknessess of BitId is the lack of authentication revocation capabilities, such as when a user loses her private key. By adding a decentralized certification authority (CA) to the protocol, this security feature becomes feasible.
 
-Storage of the CA is done using the Namecoin blockchain under the `bitid/` namespace. In a raw implementation, user must therefore have a Namecoin wallet and some NMC to pay the registration of the datas. 
+Storage of the revocation information is done using the Namecoin blockchain under the `bitid/` namespace, which effectively acts as a decentralized CA. In a raw implementation, the user must therefore have a Namecoin wallet and some NMC to pay for the data recording.
 
 ### Principle
 
-First, user needs to associate his Namecoin address with his Bitcoin address. He publishes a proof of ownership on Namecoin blockchain :
-
-**key** `bitid/[bitcoin_address]/proof`
-```
-{ "nmc" : [namecoin_address], 
-  "signature": [namecoin_address signed with bitcoin_address' private key] }
-```
-
-Now, in order to revoke access for his bitcoin address, user must publish the following on Namecoin blockchain :
+First, the user needs to associate her Namecoin address with her Bitcoin address, by publishing a proof of ownership on the Namecoin blockchain :
 
 **key** `bitid/[bitcoin_address]`
 ```
-{ "revoke" : true,
-  "signature" : [json signed with namecoin_address' private key] }
+{
+  "proof" : [namecoin public key signed with bitcoin_address' private key] }
 ```
 
-This publication is possible even it user lost his Bitcoin address private key, because proof of ownership has been delegated to his Namecoin address.
+If the bitcoin address needs to be revocated, the user must update the Namecoin record as such :
 
-After BitID authentication process, the back end checks for a proof of trust. If the proof is legal (signature matches), then it is checked for existence of a revocation at `bitid/[bitcoin_address]`
+**key** `bitid/[bitcoin_address]`
+```
+{
+  "revocated" : true
+  "proof" : [namecoin public key signed with bitcoin_address' private key] }
 
-#### Why using two entries in the Namecoin blockchain ?
-As anyone can publish on the Namecoin blockchain, you must prove that you control the Bitcoin address in question. One solution could be to sign the content with the Bitcoin address' private key, but if you just lost your wallet without backup you cannot do that.
-The solution is then to delegate control to a Namecoin address (which you need anyway to publish on the blockchain), and leverage this trust by signing the json with the Namecoin private address key.
+```
 
-#### What happens if you lose access to your Namecoin wallet ?
-If you lose access when you still have your Bitcoin private key, then you can add a new proof (`/proof-1`). If you lose it in the same time than your Bitcoin private key, then you are doomed.
+This record publication is possible even if the user lost her Bitcoin address private key, because the proof of ownership has been delegated to her Namecoin address.
+
+After a successful BitID authentication, the back-end service must check for the existence and validity of a record on the Nmaecoin blockchain, and if one exists, if the bitcoin address has been revocated. If these conditions are met, access to the service must be denied.
+
+As anyone may publish records on the Namecoin blockchain, the user must prove that she owns the Bitcoin address. Delegating revocation to a Namecoin address offers the user a security mechanism in case her Bitcoin private key is lost or stolen. 
+
+#### What happens if the Namecoin private key is lost ?
+A new record (`bitid/[bicoin_address]-1`) may be generated with a different Namecoin address. If any record matching the Bitcoin address corresponds to a valid recovation, the Bitcoin address is revocated. In all cases, revocation is still possible if the user has a copy of either the Namecoin or Bitcoin private keys. If both the Bitcoin and Namecoin private keys are lost, revocation becomes impossible.
 
 ## Decentralized identity
 
-When you are signing in a new service, you may want to automatically share some data such as your avatar, username, Twitter handle, etc. Some services doing that exist, such as [OneName](http://www.onename.io) but the key to retrieve data is your name, not your Bitcoin address.
+When signing in with a new service, a user may want to automatically share some data such as an avatar, nickname, Twitter handle, and so on. [OneName](http://www.onename.io) and other services offer such functionality, however the key to retrieve data is the user's nickname, not their Bitcoin address.
 
-First, you need to establish trust (see previous section), and publish the data you want to share :
+First, the user needs to establish trust (see previous section), and publish the data to be shared :
 
 **key** `bitid/[bitcoin_address]`
 ```
-{ "username" : "EricLarch", 
+{ 
+  "username" : "EricLarch", 
   "avatar" : "http://img.com/bla",
   "twitter" : "EricLarch",
-  "signature" : [json signed with namecoin_address' private key] }
+  "proof" : [namecoin public key signed with bitcoin_address' private key] }
 ```
 
-When the server checks for revocation, it can fetch in the same time your data and use it to populate some registration fields.
+When the server checks the Bitcoin address for revocation, it can also fetch the user data and use it to automatically populate some registration fields. If the address has been revocated, any associated user data must be considered as invalid by the service.
 
-All fields are public, and you cannot filter what you give to whom. As is, this service cannot be trusted for sensitive information such as your email.
+All fields are public, so the user may not filter which fields may be fetched by a given website. As is, this service cannot be trusted for sensitive information such as an email address.
 
-## Third party service
+## Third-party service
 
-The user experience of having the necessity to register a Namecoin address, buy some NMC and do all the publication of the data is quite cumbersome. A third party service adding a layer of abstraction would greatly simplify usage without compromising security.
+The whole process of registering a Namecoin address, buying NMC and publishing this data is quite cumbersome. A third-party service adding a layer of abstraction would greatly simplify usage without compromising security.
 
-It could also add some nice privacy features such as encrypting the identity data and reveal only extracts per the user's will.
+Such a service could also add privacy features such as encrypting the user data and providing only subsets of the data to a given service, per the user's request.
 
 # Author
 

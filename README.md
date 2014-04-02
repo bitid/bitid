@@ -33,7 +33,7 @@ In order to access a restricted area or authenticate oneself against a given ser
 The QR code contains the following data :
 
 ```
-bitid://?s=NONCE&c=https://www.site.com/callback
+bitid://login?x=NONCE&c=https://www.site.com/callback
 ```
 
 The NONCE must always be unique, and will be the user's session ID on the site the callback is redirected to.

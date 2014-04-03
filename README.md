@@ -47,7 +47,7 @@ If the user’s Bitcoin wallet is located on the same computer, a click on the Q
 |--------|--------|--------|
 |![](http://i.imgur.com/6KlZFGe.png)|![](http://i.imgur.com/8ZNMmdp.png)|![](http://i.imgur.com/630hUsu.png)|
 
-After a Bitcoin address is chosen, or created on the fly, the **full bitid URI** is signed with the address’ private key. The signature with the signed challenge is then POSTed to the callback url.
+After a Bitcoin address is chosen, or created on the fly, the **full bitid URI** is signed with the address’ private key. The signature and public key are then POSTed to the callback url.
 
 The receiving server verifies the validity of the signature and proceeds to authenticate the user. Server-side, only the user's public key is stored. A timeout for the validity of the nonce should be implemented by the server in order to prevent replay attacks.
 
@@ -113,7 +113,7 @@ To be compatible with the BitID protocol, a wallet must implement the following:
 * display a request for authentication showing the domain name callback and ask for validation
 * ask the user to pick up or create a Bitcoin address for the authentication (show the last Bitcoin address used if this is a known callback address)
 * sign the BitID URI with the private key
-* POST the signature and the signed challenge to the callback URL
+* POST the signature and the public key to the callback URL
 * completion dialog : success/retry/cancel
 
 Specs and UX should be the most simple possible in order to bring on board the developers of the most used wallets.

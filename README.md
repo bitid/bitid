@@ -5,6 +5,8 @@ BitID
 
 Pure Bitcoin sites and applications shouldn’t have to rely on artificial identification methods such as usernames and passwords. BitID is an open protocol allowing simple and secure authentication using public-key cryptography.
 
+Demo website : http://bitid-demo.herokuapp.com/
+
 # Why ?
 
 When they need to deal with Bitcoin services, users already own at least one public and private key-pair: their Bitcoin addresses. Using their wallet for authentication purposes has many benefits :
@@ -33,10 +35,13 @@ In order to access a restricted area or authenticate oneself against a given ser
 The QR code contains the following data :
 
 ```
-bitid://login?x=NONCE&c=https://www.site.com/callback
+bitid://login?x=NONCE&c=aHR0cHM6Ly93d3cuc2l0ZS5jb20vY2FsbGJhY2s%3D
 ```
 
-The NONCE must always be unique, and will be the user's session ID on the site the callback is redirected to.
+- **bitid** is the protocol scheme
+- **login** is the action to perform
+- **x** is the NONCE must always be unique, and will be the user's session ID on the site the callback is redirected to.
+- **c** is the callback URL encoded in base64 (in the example it is https://www.site.com/callback)
 
 The user has to confirm that she wants to authenticate herself on the target website, and has to choose which Bitcoin private key will sign the QR code contents.
 
@@ -131,6 +136,8 @@ To be compatible with the BitID protocol, a server application must implement th
 * Alternate version for zero-day compatibility :
     * display a form with the following fields: generated nonce, Bitcoin public address and signature
     * when submitting, verify and return to login or error
+
+An example implementation on the Ruby on Rails framework is available here : https://github.com/bitid/bitid-demo
 
 Protocol extensions
 =====

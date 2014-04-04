@@ -5,8 +5,9 @@ Author: Eric Larcheveque, @EricLarch
 Status: Pre-draft
 Type: Process
 Created: TBD
+</pre>
 
-== Abstract ==
+# Abstract
 
 The following BIP is an open protocol proposal allowing simple and secure 
 authentication based on public key cryptography. By authentication we mean 
@@ -14,7 +15,7 @@ to prove to a service/application that we control a specific Bitcoin address
 by signing a challenge, and that all related data and settings may securely 
 be linked to our session.
 
-== Motivation ==
+# Motivation
 
 Bitcoin related sites and applications shouldn’t have to rely on artificial 
 identification methods such as usernames and passwords. Using a wallet for 
@@ -26,7 +27,7 @@ authentication purposes has many benefits :
 - services always know the return address
 - optionally, connect to a decentralized identification system in order to populate registration fields (nickname, email ...)
 
-== Specification ==
+# Specification
 
 In order to access a restricted area or authenticate oneself against a given service, 
 the user is shown the following UX :
@@ -69,14 +70,14 @@ The receiving server verifies the validity of the signature and proceeds to auth
 Server-side, only the user's public key is stored. A timeout for the validity of the nonce should 
 be implemented by the server in order to prevent replay attacks.
 
-== Rationale ==
+# Rationale
 
 Classical password authentication is an insecure process that could be solved with public key cryptography. 
 The problem however is that it theoretically offloads a lot of complexity and responsibility on the user. 
 Managing private keys securely is complex. However this complexity is already being addressed in the 
 Bitcoin ecosystem. So doing public key authentication is practically a free lunch to bitcoiners.
 
-== Backward compatibility ==
+# Backward compatibility
 
 Since not all wallets will provide support for the proposed `bitid:` scheme, 
 a manual challenge is also possible :
@@ -86,7 +87,7 @@ a manual challenge is also possible :
 All wallets (including Bitcoin Core) provide manual signing capabilities, therefore any user may use the 
 BitID protocol at the expense of the UX.
 
-== Reference implementation ==
+# Reference implementation
 
 A demonstration of the workflow is available here :
 http://bitid-demo.herokuapp.com/
@@ -96,7 +97,7 @@ Right now, only manual signatures are available as there is not yet a wallet imp
 Source code of the demonstration service :
 https://github.com/bitid/bitid-demo
 
-== See also ==
+# See also
 
 Reddit thread on the need of such a protocol :
 http://www.reddit.com/r/Bitcoin/comments/1nkoju/bitcoin_core_dev_websites_do_not_need_passwords/

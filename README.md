@@ -35,13 +35,13 @@ In order to access a restricted area or authenticate oneself against a given ser
 The QR code contains the following data :
 
 ```
-bitid://login?x=NONCE&c=aHR0cHM6Ly93d3cuc2l0ZS5jb20vY2FsbGJhY2s%3D
+bitid:login?x=NONCE&c=www.site.com%2fcallback
 ```
 
 - **bitid** is the protocol scheme
 - **login** is the action to perform
 - **x** is the NONCE must always be unique, and will be the user's session ID on the site the callback is redirected to.
-- **c** is the callback URL encoded in base64 (in the example it is https://www.site.com/callback)
+- **c** is the callback URL (https mandatory)
 
 The user has to confirm that she wants to authenticate herself on the target website, and has to choose which Bitcoin private key will sign the QR code contents.
 

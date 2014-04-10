@@ -37,13 +37,15 @@ the user is shown the following UX :
 The QR code contains the following data :
 
 ```
-bitid:login?x=NONCE&c=www.site.com%2fcallback
+bitid:www.site.com/callback?x=NONCE
 ```
 
 - **bitid** is the protocol scheme
-- **login** is the action to perform
-- **x** is the NONCE must always be unique, and will be the user's session ID on the site the callback is redirected to.
-- **c** is the callback URL (https mandatory)
+- **x** is the NONCE must always be unique, and will be a link to the user's session ID on the site the callback is redirected to.
+- **url** is the callback URL (https mandatory, cannot have arguments)
+
+In order to have a `http` callback, add `&s=0`. This would be recommended for development
+purposes only.
 
 The user has to confirm that she wants to authenticate herself on the target website, and has 
 to choose which Bitcoin private key will sign the QR code contents.
@@ -57,13 +59,14 @@ following dialog options should be shown :
 |--------|--------|--------|
 |![](http://i.imgur.com/6KlZFGe.png)|![](http://i.imgur.com/8ZNMmdp.png)|![](http://i.imgur.com/630hUsu.png)|
 
-After a Bitcoin address is chosen, or created on the fly, the **full bitid URI** is signed with 
+After a Bitcoin address is chosen, or created on the fly, the full bitid URI is signed with 
 the address’ private key. The signature and public key are then POSTed to the callback url.
 
-**Note :** the URI could also contains a full text message to be signed 
+**Note :** the signed URI is prefixed with `Bitcoin Signed Message:\n`
 
 <pre>
-2014-04-04 11:21 I agree to connect to site.com on session NONCE
+Bitcoin Signed Message:
+bitid:www.site.com/callback?x=NONCE
 </pre>
 
 The receiving server verifies the validity of the signature and proceeds to authenticate the user. 

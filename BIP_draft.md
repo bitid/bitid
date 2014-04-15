@@ -37,12 +37,12 @@ the user is shown the following UX :
 The QR code contains the following data :
 
 ```
-bitid:www.site.com/callback?x=NONCE
+bitid://www.site.com/callback?x=NONCE
 ```
 
 - **bitid** is the protocol scheme
+- **www.site.com/callback** is the callback URL (https mandatory, cannot have arguments)
 - **x** is the NONCE must always be unique, and will be a link to the user's session ID on the site the callback is redirected to.
-- **url** is the callback URL (https mandatory, cannot have arguments)
 
 In order to have a `http` callback, add `&s=0`. This would be recommended for development
 purposes only.
@@ -66,7 +66,7 @@ the address’ private key. The signature and public key are then POSTed to the 
 
 <pre>
 Bitcoin Signed Message:
-bitid:www.site.com/callback?x=NONCE
+bitid://www.site.com/callback?x=NONCE
 </pre>
 
 The receiving server verifies the validity of the signature and proceeds to authenticate the user. 
@@ -82,7 +82,7 @@ Bitcoin ecosystem. So doing public key authentication is practically a free lunc
 
 # Backward compatibility
 
-Since not all wallets will provide support for the proposed `bitid:` scheme, 
+Since not all wallets will provide support for the proposed `bitid` scheme, 
 a manual challenge is also possible :
 
 ![](http://i.imgur.com/Giz0fGQ.png)

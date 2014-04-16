@@ -9,6 +9,8 @@ Classical password authentication is an insecure process that could be solved wi
 
 Demo website : http://bitid-demo.herokuapp.com/
 
+Slides presentation : https://docs.google.com/presentation/d/19iODrgKsVigsA17csNF3HU75UG9eiI5Z6cX2OczvIsw/pub
+
 **The protocol is described on the following BIP draft and is open for discussion :**
 
 https://github.com/bitid/bitid/blob/master/BIP_draft.md

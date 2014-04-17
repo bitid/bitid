@@ -27,6 +27,8 @@ authentication purposes has many benefits :
 - services always know the return address
 - optionally, connect to a decentralized identification system in order to populate registration fields (nickname, email ...)
 
+See complete BitID presentation : http://bit.ly/bitid-slides
+
 # Specification
 
 In order to access a restricted area or authenticate oneself against a given service, 

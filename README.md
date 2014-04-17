@@ -26,7 +26,9 @@ https://github.com/bitid/bitid/blob/master/BIP_draft.md
 * lockers rental
 
 ## E-commerce
-* dead simple e-commerce services: one QR code scan for authentication/cart creation, one QR code scan for payment
+When paying for something on the internet, the wallet can save meta-data from the transactions (based on BIP70 payment request). If I need to access again to my order (change of address, download again the file...) then I identify using the originating address for this transaction.
+
+There is therefore no need to create an account prior to the payment, reducing the friction and upping the transformation rate for the merchant.
 
 # Security concerns
 

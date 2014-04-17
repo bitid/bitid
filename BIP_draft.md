@@ -100,6 +100,9 @@ Right now, only manual signatures are available as there is not yet a wallet imp
 Source code of the demonstration service :
 https://github.com/bitid/bitid-demo
 
+Ruby gem implementing challenge and verification :
+https://github.com/bitid/bitid-ruby
+
 # See also
 
 Reddit thread on the need of such a protocol :

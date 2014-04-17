@@ -80,7 +80,11 @@ To be compatible with the BitID protocol, a server application must implement th
     * display a form with the following fields: generated nonce, Bitcoin public address and signature
     * when submitting, verify and return to login or error
 
-An example implementation on the Ruby on Rails framework is available here : https://github.com/bitid/bitid-demo
+Ruby gem implementing challenge and verification :
+https://github.com/bitid/bitid-ruby
+
+An example implementation on the Ruby on Rails framework is available here : 
+https://github.com/bitid/bitid-demo
 
 Protocol extensions
 =====

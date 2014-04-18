@@ -64,11 +64,11 @@ following dialog options should be shown :
 After a Bitcoin address is chosen, or created on the fly, the full bitid URI is signed with 
 the address’ private key. The signature and public key are then POSTed to the callback url.
 
-**Note :** the signed URI is prefixed with `Bitcoin Signed Message:\n`
+**Note :** the signature must comply to the `\x18Bitcoin Signed Message:\n#{message.size.chr}#{message}` format
 
 <pre>
-Bitcoin Signed Message:
-bitid://www.site.com/callback?x=NONCE
+\x18Bitcoin Signed Message:
+%bitid://www.site.com/callback?x=NONCE
 </pre>
 
 The receiving server verifies the validity of the signature and proceeds to authenticate the user. 

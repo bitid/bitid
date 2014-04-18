@@ -7,7 +7,7 @@ Pure Bitcoin sites and applications shouldn’t have to rely on artificial ident
 
 Classical password authentication is an insecure process that could be solved with public key cryptography. The problem however is that it theoretically offloads a lot of complexity and responsibility on the user. Managing private keys securely is complex. However this complexity is already being addressed in the Bitcoin ecosystem. So doing public key authentication is practically a free lunch to bitcoiners.
 
-Demo website : http://bitid-demo.herokuapp.com/
+Demo website : http://bitid.bitcoin.blue
 
 Slides presentation : http://bit.ly/bitid-slides
 

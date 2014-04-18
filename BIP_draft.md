@@ -95,7 +95,7 @@ BitID protocol at the expense of the UX.
 # Reference implementation
 
 A demonstration of the workflow is available here :
-http://bitid-demo.herokuapp.com/
+http://bitid.bitcoin.blue
 
 Right now, only manual signatures are available as there is not yet a wallet implementing this BIP.
 

@@ -62,7 +62,7 @@ To be compatible with the BitID protocol, a wallet must implement the following:
 * decode the URI and verify its format
 * display a request for authentication showing the domain name callback and ask for validation
 * ask the user to pick up or create a Bitcoin address for the authentication (show the last Bitcoin address used if this is a known callback address)
-* sign the BitID URI with the private key
+* sign the BitID URI with the private key (using the \x18Bitcoin Signed Message:\n#{message.size.chr}#{message} convention)
 * POST the signature and the public key to the callback URL
 * completion dialog : success/retry/cancel
 

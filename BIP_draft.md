@@ -46,7 +46,7 @@ bitid://www.site.com/callback?x=NONCE
 - **www.site.com/callback** is the callback URL (https mandatory, cannot have arguments)
 - **x** is the NONCE must always be unique, and will be a link to the user's session ID on the site the callback is redirected to.
 
-In order to have a `http` callback, add `&s=0`. This would be recommended for development
+In order to have a `http` callback, add `&u=1`. This would be recommended for development
 purposes only.
 
 The user has to confirm that she wants to authenticate herself on the target website, and has 

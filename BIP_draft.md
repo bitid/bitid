@@ -95,15 +95,20 @@ BitID protocol at the expense of the UX.
 # Reference implementation
 
 A demonstration of the workflow is available here :
+
 http://bitid.bitcoin.blue
 
-Right now, only manual signatures are available as there is not yet a wallet implementing this BIP.
-
 Source code of the demonstration service :
+
 https://github.com/bitid/bitid-demo
 
 Ruby gem implementing challenge and verification :
+
 https://github.com/bitid/bitid-ruby
+
+Android Bitcoin wallet fork including support of BitID :
+
+https://github.com/bitid/bitcoin-wallet
 
 # See also
 

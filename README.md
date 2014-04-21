@@ -7,9 +7,14 @@ Pure Bitcoin sites and applications shouldn’t have to rely on artificial ident
 
 Classical password authentication is an insecure process that could be solved with public key cryptography. The problem however is that it theoretically offloads a lot of complexity and responsibility on the user. Managing private keys securely is complex. However this complexity is already being addressed in the Bitcoin ecosystem. So doing public key authentication is practically a free lunch to bitcoiners.
 
-Demo website : http://bitid.bitcoin.blue
+Video demonstration of the user flow :  
+https://www.youtube.com/watch?v=3eepEWTnRTc
 
-Slides presentation : http://bit.ly/bitid-slides
+Slides presentation of the project :  
+http://bit.ly/bitid-slides
+
+Implementation example :  
+http://bitid.bitcoin.blue
 
 **The protocol is described on the following BIP draft and is open for discussion :**
 
@@ -20,6 +25,7 @@ https://github.com/bitid/bitid/blob/master/BIP_draft.md
 ## Website authentication
 * any bitcoin core website (mining pools, related services, otc exchanges…)
 * content websites such as forums and wikis, including access control
+* decentralized 2FA
 
 ## Real world applications
 * door access controls
@@ -68,6 +74,9 @@ To be compatible with the BitID protocol, a wallet must implement the following:
 
 Specs and UX should be the most simple possible in order to bring on board the developers of the most used wallets.
 
+Android Bitcoin wallet implementation :  
+https://github.com/bitid/bitcoin-wallet
+
 ## Backend implementation requirements
 
 To be compatible with the BitID protocol, a server application must implement the following :
@@ -82,74 +91,16 @@ To be compatible with the BitID protocol, a server application must implement th
     * display a form with the following fields: generated nonce, Bitcoin public address and signature
     * when submitting, verify and return to login or error
 
-Ruby gem implementing challenge and verification :
+Ruby implementation :  
 https://github.com/bitid/bitid-ruby
 
-An example implementation on the Ruby on Rails framework is available here : 
+Python implementation :  
+https://github.com/LaurentMT/pybitid
+
+An example implementation on the Ruby on Rails framework is available here :  
 https://github.com/bitid/bitid-demo
 
-Protocol extensions
-=====
-
-## Decentralized certification authority
-
-One of the weaknessess of BitID is the lack of authentication revocation capabilities, such as when a user loses her private key. By adding a decentralized certification authority (CA) to the protocol, this security feature becomes feasible.
-
-Storage of the revocation information is done using the Namecoin blockchain under the `bitid/` namespace, which effectively acts as a decentralized CA. In a raw implementation, the user must therefore have a Namecoin wallet and some NMC to pay for the data recording.
-
-### Principle
-
-First, the user needs to associate her Namecoin address with her Bitcoin address, by publishing a proof of ownership on the Namecoin blockchain :
-
-**entry key** `bitid/[bitcoin_address]`
-```
-{
-  "signature" : [entry key signed with bitcoin_address' private key] 
-}
-```
-
-If the bitcoin address needs to be revocated, the user must update the Namecoin record as such :
-
-**entry key** `bitid/[bitcoin_address]`
-```
-{
-  "revocated" : true,
-  "signature" : [entry key signed with bitcoin_address' private key] 
-}
-```
-
-This record publication is possible even if the user lost her Bitcoin address private key, because the proof of ownership has been delegated to her Namecoin address.
-
-After a successful BitID authentication, the back-end service must check for the existence and validity of a record on the Namecoin blockchain, and if one exists, it checks if address has been revocated. If these conditions are met, access to the service must be denied.
-
-Delegating revocation to a Namecoin address offers the user a security mechanism in case her Bitcoin private key is lost or stolen. For maximum security, Namecoin keys can be kept in a safe and used only in case of revocation.
-
-## Decentralized identity
-
-When signing in with a new service, a user may want to automatically share some data such as an avatar, nickname, Twitter handle, and so on. [OneName](http://www.onename.io) and other services offer such functionality, however the key to retrieve data is the user's nickname, not their Bitcoin address.
-
-Using the same proof of trust as previously, user can store his data in the Namecoin Blockchain :
-
-**entry key** `bitid/[bitcoin_address]`
-```
-{ 
-  "username" : "EricLarch", 
-  "avatar" : "http://img.com/bla",
-  "twitter" : "EricLarch",
-  "proof" : [entry key signed with bitcoin_address' private key] 
-}
-```
-
-When the server checks the Bitcoin address for revocation, it can also fetch the user data and use it to automatically populate some registration fields. If the address has been revocated, any associated user data must be considered as invalid by the service.
-
-All fields are public, so the user may not filter which fields may be fetched by a given website. As is, this service cannot be trusted for sensitive information such as an email address.
-
-## Third-party service
-
-The whole process of registering a Namecoin address, buying NMC and publishing this data is quite cumbersome. A third-party service adding a layer of abstraction would greatly simplify usage without compromising security.
-
-Such a service could also add privacy features such as encrypting the user data and providing only subsets of the data to a given service, per the user's request.
-
-# Author
+# Credits
 
 Eric Larchevêque (elarch@gmail.com)
+@LaurentMT (Python library)

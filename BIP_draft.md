@@ -94,20 +94,19 @@ BitID protocol at the expense of the UX.
 
 # Reference implementation
 
-A demonstration of the workflow is available here :
-
+A demonstration of the workflow is available here :  
 http://bitid.bitcoin.blue
 
-Source code of the demonstration service :
-
+Source code of the demonstration service :  
 https://github.com/bitid/bitid-demo
 
-Ruby gem implementing challenge and verification :
-
+Ruby implementation :  
 https://github.com/bitid/bitid-ruby
 
-Android Bitcoin wallet fork including support of BitID :
+Python implementation :  
+https://github.com/LaurentMT/pybitid
 
+Android Bitcoin wallet fork including support of BitID :  
 https://github.com/bitid/bitcoin-wallet
 
 # See also

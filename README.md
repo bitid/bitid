@@ -36,6 +36,8 @@ When paying for something on the internet, the wallet can save meta-data from th
 
 There is therefore no need to create an account prior to the payment, reducing the friction and upping the transformation rate for the merchant.
 
+See [BitID metadata](https://github.com/bitid/bitid/blob/master/bitid_metadata.md) for more information.
+
 # Security concerns
 
 BitID offers a secure authentication method :
@@ -102,5 +104,5 @@ https://github.com/bitid/bitid-demo
 
 # Credits
 
-Eric Larchevêque (elarch@gmail.com)
+Eric Larchevêque (elarch@gmail.com)  
 @LaurentMT (Python library)

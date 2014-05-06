@@ -94,15 +94,15 @@ To be compatible with the BitID protocol, a server application must implement th
     * when submitting, verify and return to login or error
 
 Ruby implementation :  
-https://github.com/bitid/bitid-ruby
+https://github.com/bitid/bitid-ruby (Gem)  
+https://github.com/bitid/bitid-demo
 
 Python implementation :  
-https://github.com/LaurentMT/pybitid
-
-An example implementation on the Ruby on Rails framework is available here :  
-https://github.com/bitid/bitid-demo
+https://github.com/LaurentMT/pybitid  
+https://github.com/LaurentMT/pybitid_demo  
+https://github.com/LaurentMT/pybitid_2fa_demo
 
 # Credits
 
 Eric Larchevêque (elarch@gmail.com)  
-@LaurentMT (Python library)
+@LaurentMT (Python)

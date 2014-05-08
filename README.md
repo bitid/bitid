@@ -102,7 +102,11 @@ https://github.com/LaurentMT/pybitid
 https://github.com/LaurentMT/pybitid_demo  
 https://github.com/LaurentMT/pybitid_2fa_demo
 
+Javascript implementation :  
+https://github.com/porkchop/bitid-js
+
 # Credits
 
-Eric Larchevêque (elarch@gmail.com)  
-@LaurentMT (Python)
+Eric Larchevêque elarch@gmail.com (Protocol, Ruby)  
+@LaurentMT (Python)  
+Aaron Caswell aaron@captureplay.com (Javascript)  

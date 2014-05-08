@@ -106,6 +106,9 @@ https://github.com/bitid/bitid-ruby
 Python implementation :  
 https://github.com/LaurentMT/pybitid
 
+Javascript implementation :  
+https://github.com/porkchop/bitid-js  
+
 Android Bitcoin wallet fork including support of BitID :  
 https://github.com/bitid/bitcoin-wallet
 

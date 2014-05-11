@@ -114,3 +114,4 @@ https://github.com/porkchop/bitid-js
 Eric Larchevêque elarch@gmail.com (Protocol, Ruby)  
 @LaurentMT (Python)  
 Aaron Caswell aaron@captureplay.com (Javascript)  
+@_CONEJO (PHP)  

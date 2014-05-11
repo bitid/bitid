@@ -103,6 +103,10 @@ https://github.com/LaurentMT/pybitid_demo
 https://github.com/LaurentMT/pybitid_2fa_demo
 
 Javascript implementation :  
+https://github.com/porkchop/bitid-js  
+https://github.com/porkchop/bitid-js-demo  
+
+PHP implementation :  
 https://github.com/porkchop/bitid-js
 
 # Credits

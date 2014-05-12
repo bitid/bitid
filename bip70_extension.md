@@ -46,11 +46,10 @@ Payment protocol (BIP70) has been proposed as a standardized way to negociate pa
     }
 </pre>
 
-{|
-| bitid_challenge || bitid uri proposed as a challenge. May be used to negociate a bitid token which will be used by the customer to access resources. 
-|}
+Additional fields:
+- bitid_challenge : bitid uri proposed as a challenge. May be used to negociate a bitid token which will be used by the customer to access resources. 
 
-Note : 
+Note: 
 - Server needs to manage a extended delay for this kind of challenge (more than default 10 minutes)
 
 
@@ -67,11 +66,9 @@ Note :
     }
 </pre>
 
-{|
-| bitid_sign || signature of the bitid_challenge.
-|-
-| bitid_addr || address associated to the key pair used to sign the challenge and which will be used later to authenticate the customer
-|}
+Additional fields:
+- bitid_sign : signature of the bitid_challenge.
+- bitid_addr : address associated to the key pair used to sign the challenge and which will be used later to authenticate the customer
 
 Note:
 - Initial bitid_challenge is not sent again. Merchant retrieves it from the PaymentDetails message.
@@ -90,14 +87,10 @@ Note:
     }
 </pre>
 
-{|
-| bitid_addr || address registered by the merchant as the bitid token associated to this payment
-|-
-| bitid_status || error code if validation of signature has failed
-|-
-| bitid_msg || error message if validation of signature has failed
-|}
-
+Additional fields:
+- bitid_addr : address registered by the merchant as the bitid token associated to this payment
+- bitid_status : error code if validation of signature has failed
+- bitid_msg : error message if validation of signature has failed
 
 Note:
 - An error during the validation of the bitid_challenge shouldn't prevent the completion of the payment but should fail gracefully, giving instructions to the user on how to to authenticate manually from the website. 

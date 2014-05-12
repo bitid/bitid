@@ -54,8 +54,8 @@ Request can be sent in two formats: json or html form
 - Process completed
 
 	- Response format
-		- address : string - required - address used for authentication
-		- nonce	  : string - required - session id associated to the authentication
+		- address	: string - required - address used for authentication
+		- nonce		: string - required - session id associated to the authentication
 
 	- Http code
 		200

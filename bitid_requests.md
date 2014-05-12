@@ -68,37 +68,37 @@ Request can be sent in two formats: json or html form
 
 	- Http codes / status codes / messages
 		- Invalid adress
-			Http code 	: 401
-			status		: 10
-			message		: Address is invalid or not legal
+			- Http code 	: 401
+			- status		: 10
+			- message		: Address is invalid or not legal
 		- Address is valid but not associated to an existing account
-			Http code 	: 401
-			status		: 11
-			message		: Address is invalid or not legal
+			- Http code 	: 401
+			- status		: 11
+			- message		: Address is invalid or not legal
 		- Invalid BitId uri
-			Http code 	: 401
-			status		: 20
-			message		: BitID URI is invalid or not legal
+			- Http code 	: 401
+			- status		: 20
+			- message		: BitID URI is invalid or not legal
 		- Invalid signature
-			Http code 	: 401
-			status		: 30
-			message		: Signature is incorrect
+			- Http code 	: 401
+			- status		: 30
+			- message		: Signature is incorrect
 		- Illegal nonce
-			Http code 	: 401
-			status		: 40
-			message		: NONCE is illegal
+			- Http code 	: 401
+			- status		: 40
+			- message		: NONCE is illegal
 		- Expired nonce
-			Http code 	: 401
-			status		: 41
-			message		: NONCE has expired
+			- Http code 	: 401
+			- status		: 41
+			- message		: NONCE has expired
 		- Server error (pb with db, ...)
-			Http code 	: 500
-			status		: 50
-			message		: ???
+			- Http code 	: 500
+			- status		: 50
+			- message		: ???
 		- Misc error (specific to implementations by websites)
-			Http code 	: 401
-			status		: 51
-			message		: [...]
+			- Http code 	: 401
+			- status		: 51
+			- message		: [...]
 
 
 ## CheckAuth

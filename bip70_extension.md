@@ -6,11 +6,11 @@ A proposal to extend the payment protocol (BIP70) with additional data allowing 
 ## Motivation
 
 Let's have a short thought experiment: After a long week, you decide to have some fun and go to the movie theater.
-You: Hi ! May I have 2 seats for the wolf of wall street ?
-Cashier: Sure ! May you fill this form with your civility, firstname, lastname, address, phone number, credit card number, expiry date and CVV2 ?
-You: ...
-Cashier: ...?
-You: wtf ?!!!
+- You: Hi ! May I have 2 seats for the wolf of wall street ?
+- Cashier: Sure ! May you fill this form with your civility, firstname, lastname, address, phone number, credit card number, expiry date and CVV2 ?
+- You: ...
+- Cashier: ...?
+- You: wtf ?!!!
 
 In real life, payment is the only thing required to finalize a transaction with a merchant. Sometimes it makes sense to disclose personal data but these cases are exceptions (when you expect a delivery, when you rent an expensive good, ...). In the digital world, disclosing personal data to access bought goods or services has always been the rule but this model has several drawbacks:
 - it's conceptually wrong: it introduces the concept of identity in processes which should not rely on identity,

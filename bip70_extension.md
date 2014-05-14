@@ -1,4 +1,4 @@
-# BitId extension for Payment Protocol (BIP70)
+# BitID extension for Payment Protocol (BIP70)
 
 A proposal to extend the payment protocol (BIP70) with additional data allowing negociation of a bitid token (basically a bitcoin address later used to access resources related to the goods or services bought by the user).
 
@@ -23,13 +23,13 @@ In real life, payment is the only thing required to finalize a transaction with 
 
 Bitcoin (the app) has been designed as an electronic payment system. There's an asymetry in bitcoin: addresses (actually key pairs) are used to unlock unspent transactions but the protocol does not have the concept of a sender (address sending a transaction). This asymetry is not a flaw but is by design. On the other hand, commerce at its core is a symetric activity: customer gives money and receives a good (a service, ...). Per se, the bitcoin protocol does not allow to fix issues related to the current model.
 
-BitId has been proposed as a solution to enrich bitcoin wallets with an open protocol allowing simple, fast and secure authentication. 
-The protocol has many use cases and is sometimes talked as an additional tool to authenticate user's identity. For this proposal, we are interested in a very different aspect of BitId as a tool allowing to get rid of the concept of identity. 
+BitID has been proposed as a solution to enrich bitcoin wallets with an open protocol allowing simple, fast and secure authentication. 
+The protocol has many use cases and is sometimes talked as an additional tool to authenticate user's identity. For this proposal, we are interested in a very different aspect of BitID as a tool allowing to get rid of the concept of identity. 
 
-Payment protocol (BIP70) has been proposed as a standardized way to negociate payments between 2 entities. Payment protocol has been designed to be extensible and seems the natural place for articulating bitcoin & bitid protocols.
+Payment protocol (BIP70) has been proposed as a standardized way to negociate payments between 2 entities. Payment protocol has been designed to be extensible and seems the natural place for articulating Bitcoin & BitID protocols.
 
 
-## BitId in the payment protocol
+## BitID in the payment protocol
 
 ### PaymentDetails 
 
@@ -47,7 +47,7 @@ Payment protocol (BIP70) has been proposed as a standardized way to negociate pa
 </pre>
 
 Additional fields:
-- bitid_challenge : bitid uri proposed as a challenge. May be used to negociate a bitid token which will be used by the customer to access resources. 
+- bitid_challenge : BitID uri proposed as a challenge. May be used to negociate a BitID token which will be used by the customer to access resources. 
 
 Note: 
 - Server needs to manage a extended delay for this kind of challenge (more than default 10 minutes)
@@ -88,7 +88,7 @@ Note:
 </pre>
 
 Additional fields:
-- bitid_addr : address registered by the merchant as the bitid token associated to this payment
+- bitid_addr : address registered by the merchant as the BitID token associated to this payment
 - bitid_status : error code if validation of signature has failed
 - bitid_msg : error message if validation of signature has failed
 

@@ -107,7 +107,8 @@ https://github.com/porkchop/bitid-js
 https://github.com/porkchop/bitid-js-demo  
 
 PHP implementation :  
-https://github.com/porkchop/bitid-js
+https://github.com/conejoninja/bitid-php  
+http://vps.madriguera.me/bitid-php/ (demo)
 
 # Credits
 

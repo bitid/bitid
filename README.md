@@ -13,8 +13,11 @@ https://www.youtube.com/watch?v=3eepEWTnRTc
 Slides presentation of the project :  
 http://bit.ly/bitid-slides
 
-Implementation example :  
+Implementation example (server) :  
 http://bitid.bitcoin.blue
+
+Implementation example (client) :  
+https://github.com/antonio-fr/SimpleBitID  
 
 **The protocol is described on the following BIP draft and is open for discussion :**
 
@@ -78,6 +81,9 @@ Specs and UX should be the most simple possible in order to bring on board the d
 
 Android Bitcoin wallet implementation :  
 https://github.com/bitid/bitcoin-wallet
+
+SimpleBitID (python client) :  
+https://github.com/antonio-fr/SimpleBitID  
 
 ## Backend implementation requirements
 

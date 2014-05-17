@@ -118,7 +118,8 @@ http://vps.madriguera.me/bitid-php/ (demo)
 
 # Credits
 
-Eric Larchevêque elarch@gmail.com (Protocol, Ruby)  
+Eric Larchevêque elarch@gmail.com (Ruby)  
 @LaurentMT (Python)  
 Aaron Caswell aaron@captureplay.com (Javascript)  
 @_CONEJO (PHP)  
+Antoine FERRON [antonio-fr](https://github.com/antonio-fr) (SimpleBitID client)  

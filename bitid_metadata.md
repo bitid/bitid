@@ -113,7 +113,7 @@ the personal information fields he thinks necessary.
 | --- | --- |
 | Email | e |
 | Username | u |
-| First name | f |
+| First name | n |
 | Last name | l |
 | Date of birth | d |
 | Gender | g |

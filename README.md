@@ -114,7 +114,7 @@ https://github.com/porkchop/bitid-js-demo
 
 PHP implementation :  
 https://github.com/conejoninja/bitid-php  
-http://vps.madriguera.me/bitid-php/ (demo)
+http://vps.madriguera.me/bitid-php/ (demo)  
 http://wordpress.org/plugins/bitid-authentication/ (wordpress plugin)
 
 # Credits

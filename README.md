@@ -85,6 +85,10 @@ https://github.com/bitid/bitcoin-wallet
 SimpleBitID (python client) :  
 https://github.com/antonio-fr/SimpleBitID  
 
+BitID Authenticator (Android) :  
+https://play.google.com/store/apps/details?id=com.skubit.bitid (app)  
+https://github.com/skubit/bitid-android  (source)
+
 ## Backend implementation requirements
 
 To be compatible with the BitID protocol, a server application must implement the following :
@@ -119,7 +123,7 @@ http://wordpress.org/plugins/bitid-authentication/ (wordpress plugin)
 
 # Credits
 
-Eric Larchevêque elarch@gmail.com (Ruby)  
+Eric Larchevêque eric@ledger.fr (protocol, Ruby)  
 @LaurentMT (Python)  
 Aaron Caswell aaron@captureplay.com (Javascript)  
 @_CONEJO (PHP)  

@@ -39,7 +39,7 @@ the user is shown the following UX :
 The QR code contains the following data :
 
 ```
-bitid://www.site.com/callback?x=NONCE
+bitid:www.site.com/callback?x=NONCE
 ```
 
 - **bitid** is the protocol scheme
@@ -68,12 +68,25 @@ the address’ private key. The signature and public key are then POSTed to the 
 
 <pre>
 \x18Bitcoin Signed Message:
-%bitid://www.site.com/callback?x=NONCE
+%bitid:www.site.com/callback?x=NONCE
 </pre>
 
 The receiving server verifies the validity of the signature and proceeds to authenticate the user. 
 Server-side, only the user's public key is stored. A timeout for the validity of the nonce should 
 be implemented by the server in order to prevent replay attacks.
+
+## HD wallet derivation path
+
+For HD wallets, the following BIP32 derivation path is proposed:
+
+<pre>
+m/0'/0xb11e'/sha32uri/n
+
+Where:
+uri = "bitid:www.site.com/callback" (no parameters)
+sha32uri = 32 highest bits of sha256(uri)
+n = identity index, in case multiple ids are needed for this uri (default = 0)
+</pre>
 
 # Rationale
 

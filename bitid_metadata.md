@@ -121,6 +121,12 @@ the personal information fields he thinks necessary.
 | Facebook | f |
 | Homepage | u |
 | Profile picture url | p |
+| Address Line 1 | a1 |
+| Address Line 2 | a2 |
+| City | c |
+| State / Province | s |
+| Postal Code | z |
+| Country | y |
 
 Permissions to get fields are requested through the param `s` (for scope). Example :
 

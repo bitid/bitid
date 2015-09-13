@@ -77,7 +77,25 @@ be implemented by the server in order to prevent replay attacks.
 
 ## HD wallet derivation path
 
-For HD wallets, the following BIP32 derivation path is proposed:
+For maximum compatibility with other identification scheme We follow the [http://doc.satoshilabs.com/slips/slip-0013.html](SLIP0013) structure from TREZOR connect.
+
+* `URI` is for instance `bitid:www.site.com/callback` (but could also be `ssh://root@example.com:2222` to apply BitID to anything)
+* `index` (32 bit unsigned integer) : used so one can generate more keys corresponding to the same URI. If not set, by default the index should be `0`
+
+**HD structure**
+
+1. Let’s concatenate the little endian representation of index with the URI.
+2. Compute the SHA256 hash of the result.
+3. Let’s take first 128 bits of the hash and split it into four 32-bit numbers A, B, C, D.
+4. Set highest bits of numbers A, B, C, D to 1.
+5. Derive the HD node m/13’/A’/B’/C’/D’ according to BIP32.
+
+
+
+
+## HD wallet derivation path (legacy)
+
+This is the first proposal, before we decided to follow the SLIP0013 from Trezor. You should **NOT** implement the following HD structure, it is given for reference only.
 
 <pre>
 m/0'/0xb11e'/sha32uri/n

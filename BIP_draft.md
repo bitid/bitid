@@ -79,19 +79,27 @@ be implemented by the server in order to prevent replay attacks.
 
 For maximum compatibility with other identification scheme We follow the [http://doc.satoshilabs.com/slips/slip-0013.html](SLIP0013) structure from TREZOR connect.
 
-* `URI` is for instance `bitid:www.site.com/callback` (but could also be `ssh://root@example.com:2222` to apply BitID to anything)
+* `URI` is the **callback** URI (not the BitID URI)
 * `index` (32 bit unsigned integer) : used so one can generate more keys corresponding to the same URI. If not set, by default the index should be `0`
 
 **HD structure**
 
 1. Let’s concatenate the little endian representation of index with the URI.
 2. Compute the SHA256 hash of the result.
-3. Let’s take first 128 bits of the hash and split it into four 32-bit numbers A, B, C, D.
+3. Let’s take first 128 bits of the hash and split it into four 32-bit numbers A, B, C, D (each in little endian notation)
 4. Set highest bits of numbers A, B, C, D to 1.
 5. Derive the HD node m/13’/A’/B’/C’/D’ according to BIP32.
 
+**Test vectors**
 
+BIP39 seed: `inhale praise target steak garlic cricket paper better evil almost sadness crawl city banner amused fringe fox insect roast aunt prefer hollow basic ladder`    
+Callback URI: `http://bitid.bitcoin.blue/callback`    
+Index: `0`
 
+To hash: `[0, 0, 0, 0, 104, 116, 116, 112, 58, 47, 47, 98, 105, 116, 105, 100, 46, 98, 105, 116, 99, 111, 105, 110, 46, 98, 108, 117, 101, 47, 99, 97, 108, 108, 98, 97, 99, 107]`    
+Hash result: `123155becf82afc03bfb614337bfd2eddae7046183a6d1a6dfb02b1966fdb321`    
+BIP32 path: `13'/0xbe553112'/0xc0af82cf'/0x4361fb3b'/0xedd2bf37'`    
+BitID address: `1J34vj4wowwPYafbeibZGht3zy3qERoUM1`    
 
 ## HD wallet derivation path (legacy)
 

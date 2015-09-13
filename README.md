@@ -86,8 +86,12 @@ SimpleBitID (python client) :
 https://github.com/antonio-fr/SimpleBitID  
 
 BitID Authenticator (Android) :  
-https://play.google.com/store/apps/details?id=com.skubit.bitid (app)  
+https://play.google.com/store/apps/details?id=com.skubit.bitid (app)     
 https://github.com/skubit/bitid-android  (source)
+
+Ledger Wallet Chrome app (Chrome/Chromium) :    
+https://www.ledgerwallet.com    
+https://github.com/LedgerHQ/ledger-wallet-chrome (source)
 
 ## Backend implementation requirements
 

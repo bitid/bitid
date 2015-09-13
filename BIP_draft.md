@@ -96,7 +96,7 @@ BIP39 seed: `inhale praise target steak garlic cricket paper better evil almost 
 Callback URI: `http://bitid.bitcoin.blue/callback`    
 Index: `0`
 
-To hash: `[0, 0, 0, 0, 104, 116, 116, 112, 58, 47, 47, 98, 105, 116, 105, 100, 46, 98, 105, 116, 99, 111, 105, 110, 46, 98, 108, 117, 101, 47, 99, 97, 108, 108, 98, 97, 99, 107]`    
+To hash: `00000000687474703a2f2f62697469642e626974636f696e2e626c75652f63616c6c6261636b` (binary hash)    
 Hash result: `123155becf82afc03bfb614337bfd2eddae7046183a6d1a6dfb02b1966fdb321`    
 BIP32 path: `13'/0xbe553112'/0xc0af82cf'/0x4361fb3b'/0xedd2bf37'`    
 BitID address: `1J34vj4wowwPYafbeibZGht3zy3qERoUM1`    

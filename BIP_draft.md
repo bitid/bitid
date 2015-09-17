@@ -42,7 +42,7 @@ The QR code contains the following data :
 bitid:www.site.com/callback?x=NONCE
 ```
 
-- **bitid** is the protocol scheme
+- **bitid** is the protocol scheme (can also be bitid://)
 - **www.site.com/callback** is the callback URL (https mandatory, cannot have arguments)
 - **x** is the NONCE must always be unique, and will be a link to the user's session ID on the site the callback is redirected to.
 
@@ -65,6 +65,8 @@ After a Bitcoin address is chosen, or created on the fly, the full bitid URI is 
 the address’ private key. The signature and public key are then POSTed to the callback url.
 
 **Note :** the signature must comply to the `\x18Bitcoin Signed Message:\n#{message.size.chr}#{message}` format
+
+**Normalization:** the URI shouldn't be changed at all before signature, and the callback should also be an exact reflection of the URI (including uppercases, escaped characters, etc)
 
 <pre>
 \x18Bitcoin Signed Message:

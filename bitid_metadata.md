@@ -114,19 +114,32 @@ the personal information fields he thinks necessary.
 | Email | e |
 | Username | u |
 | First name | n |
+| Middle name | m |
 | Last name | l |
-| Date of birth | d |
-| Gender | g |
-| Twitter | t |
-| Facebook | f |
-| Homepage | u |
-| Profile picture url | p |
+| Year of birth (YYYY) | d1 |
+| Month of birth (01-12) | d2 |
+| Day of birth (01-31) | d3 |
+| Gender (m or f) | g |
+| Twitter handle (ie. "@tweetmaster") | t |
+| Facebook URL | f |
+| Homepage URL | h |
+| Profile picture URL | p |
+| Mobile Phone (country code ie. "+1") | p1 |
+| Mobile Phone (area code) | p2 |
+| Mobile Phone (phone number) | p3 |
+| Work Phone (country code) | p4 |
+| Work Phone (area code) | p5 |
+| Work Phone (phone number) | p6 |
+| Home Phone (country code) | p7 |
+| Home Phone (area code) | p8 |
+| Home Phone (phone number) | p9 |
 | Address Line 1 | a1 |
 | Address Line 2 | a2 |
 | City | c |
 | State / Province | s |
 | Postal Code | z |
 | Country | y |
+| Bitcoin Public Address or full payment URI | a |
 
 Permissions to get fields are requested through the param `s` (for scope). Example :
 
@@ -145,6 +158,18 @@ All granted fields are sent with the callback :
   "u": "Me me",
   "p": "http://www.img.com/me.jpg" }
 ```
+
+Some fields such as Bitcoin Public Address may have multiple values returned :
+
+```
+{ "e": "me@email.com",
+  "u": "Me me",
+  "p": "http://www.img.com/me.jpg", 
+  "a": "bitcoin:1AsvCB8Xy7NxdEFUcj5bK36CtdKRcCAVCM",
+  "a": "16pHdk5jMPFXug2A86JVY24MyQePwuBVme",
+  "a": "bitcoin:1DukiLTu6uFPPnS95HjwwPtwXiXXZCGkeX?label=Paul" }
+```
+
 
 Personal information are hosted on the wallet, and shared on a case
 by case basis with a full control of the user. This ensures maximum privacy, whilst

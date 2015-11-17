@@ -82,6 +82,9 @@ Specs and UX should be the most simple possible in order to bring on board the d
 Android Bitcoin wallet implementation :  
 https://github.com/bitid/bitcoin-wallet
 
+Airbitz Bitcoin wallet implementation :  
+https://airbitz.co/bitcoin-wallet
+
 SimpleBitID (python client) :  
 https://github.com/antonio-fr/SimpleBitID  
 

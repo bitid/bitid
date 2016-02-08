@@ -79,7 +79,7 @@ be implemented by the server in order to prevent replay attacks.
 
 ## HD wallet derivation path
 
-For maximum compatibility with other identification scheme We follow the [http://doc.satoshilabs.com/slips/slip-0013.html](SLIP0013) structure from TREZOR connect.
+For maximum compatibility with other identification scheme We follow the [https://github.com/satoshilabs/slips/blob/master/slip-0013.md](SLIP0013) structure from TREZOR connect.
 
 * `URI` is the **callback** URI (not the BitID URI)
 * `index` (32 bit unsigned integer) : used so one can generate more keys corresponding to the same URI. If not set, by default the index should be `0`

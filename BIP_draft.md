@@ -77,6 +77,12 @@ The receiving server verifies the validity of the signature and proceeds to auth
 Server-side, only the user's public key is stored. A timeout for the validity of the nonce should 
 be implemented by the server in order to prevent replay attacks.
 
+## Alternative currencies
+
+In general, user may elect to authenticate using other currency than Bitcoin, or even using a public key authentication method not related to a cryptocurrency. The client should indicate the authentication method used by setting the `Bitid-Method` header. If the client makes a request using an unsupported authentication method, the server should respond with `501 Not Implemented` status code.
+
+The server should indicate supported methods in the `Accept-Bitid-Method` header when responding to `OPTIONS` request. The server may demand authentication using a particular method by generating an URI using a `bitid+METHOD_LOWERCASE` scheme. For example, to request authentication using Bitcoin, the `bitid+bitcoin` URI scheme should be used.
+
 ## HD wallet derivation path
 
 For maximum compatibility with other identification scheme We follow the [https://github.com/satoshilabs/slips/blob/master/slip-0013.md](SLIP0013) structure from TREZOR connect.
